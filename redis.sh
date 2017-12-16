@@ -107,4 +107,12 @@ chmod 600 /etc/redis/redis.conf
 echo Enabling Redis on restart...
 systemctl enable redis
 systemctl restart redis
+echo Optimizing Redis server.
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+sysctl vm.overcommit_memory=1
+sysctl -w net.core.somaxconn=65535
+sed -i '$i \echo never > /sys/kernel/mm/transparent_hugepage/enabled\n' /etc/rc.local
+sed -i '$i \vm.overcommit_memory = 1\n' /etc/sysctl.conf
+sed -i '$i \sysctl -w net.core.somaxconn=65535\n' /etc/rc.local
+
 echo Redis setup is successfull!
