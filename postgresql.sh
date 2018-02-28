@@ -72,7 +72,7 @@ add-apt-repository "$PGREPO"
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 echo Updating Apt sources...
 apt-get update
-apt-get install --yes postgresql-9.6 postgresql-contrib-9.6
+apt-get install --yes postgresql-9.6 postgresql-contrib-9.6 postgresql-9.6-plv8
 
 echo Database user: 
 read dbuser
