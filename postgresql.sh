@@ -61,7 +61,7 @@ fi
 echo Cleaning up before starting...
 service postgresql stop > /dev/null 2>&1
 echo Remove any postgresql installation...
-apt-get --purge remove postgresql*
+apt-get --purge --yes remove postgresql*
 rm -r /etc/postgresql/
 rm -r /etc/postgresql-common/
 rm -r /var/lib/postgresql/
@@ -80,6 +80,11 @@ echo Database name:
 read dbname
 echo Database pw: 
 read dbpw
+
+echo Starting postgresql service...
+service postgresql stop
+service postgresql start
+
 echo Creating user $dbuser
 sudo -Hiu postgres createuser $dbuser
 sudo -Hiu postgres psql -c 'ALTER USER '"$dbuser"' WITH PASSWORD '"'$dbpw'"';'
