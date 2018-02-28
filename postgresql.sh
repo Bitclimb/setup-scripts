@@ -43,10 +43,10 @@ clear
 
 if [ -f /etc/os-release ]; then
 	. /etc/os-release
-	UBUNTU=UBUNTU_CODENAME
+	UBUNTU=$UBUNTU_CODENAME
 elif [ -f /etc/upstream-release/lsb-release ]; then
 	. /etc/upstream-release/lsb-release
-	UBUNTU=DISTRIB_CODENAME
+	UBUNTU=$DISTRIB_CODENAME
 fi
 
 if [ "$UBUNTU" == 'trusty' ]; then
@@ -72,6 +72,7 @@ add-apt-repository "$PGREPO"
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 echo Updating Apt sources...
 apt-get update
+apt-get install --yes postgresql-9.6 postgresql-contrib-9.6
 
 echo Database user: 
 read dbuser
