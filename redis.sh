@@ -78,7 +78,7 @@ sed -i 's/dir \.\//dir \/var\/lib\/redis/g' /etc/redis/redis.conf
 
 sed -i 's/# requirepass foobared/requirepass '"$REDISPASSWORD"'/g' /etc/redis/redis.conf
 echo Renaming risky commands...
-sed -i 's/# AOF file or transmitted to slaves may cause problems\./# AOF file or transmitted to slaves may cause problems\.\nrename-command FLUSHDB BCL_FLUSHDB\nrename-command DEBUG BCL_DEBUG\nrename-command SHUTDOWN BCL_SHUTDOWN\nrename-command CONFIG BCL_CONFIG\nrename-command SAVE BCL_SAVE\nrename-command PEXPIRE BCL_PEXPIRE\nrename-command DEL BCL_DEL\nrename-command BGREWRITEAOF BCL_BGREWRITEAOF\nrename-command BGSAVE BCL_BGSAVE\nrename-command SPOP BCL_SPOP\nrename-command SREM BCL_SREM\nrename-command RENAME BCL_RENAME\n/g' /etc/redis/redis.conf
+sed -i 's/# AOF file or transmitted to slaves may cause problems\./# AOF file or transmitted to slaves may cause problems\.\nrename-command FLUSHDB BCL_FLUSHDB\nrename-command DEBUG BCL_DEBUG\nrename-command CONFIG BCL_CONFIG\nrename-command SAVE BCL_SAVE\nrename-command PEXPIRE BCL_PEXPIRE\nrename-command DEL BCL_DEL\nrename-command BGREWRITEAOF BCL_BGREWRITEAOF\nrename-command BGSAVE BCL_BGSAVE\nrename-command SPOP BCL_SPOP\nrename-command SREM BCL_SREM\nrename-command RENAME BCL_RENAME\n/g' /etc/redis/redis.conf
 
 echo Adding redis to your service...
 cat << EOF > /etc/systemd/system/redis.service
