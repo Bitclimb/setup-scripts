@@ -85,12 +85,14 @@ cat << EOF > /etc/systemd/system/redis.service
 [Unit]
 Description=Redis In-Memory Data Store
 After=network.target
+
 [Service]
 User=redis
 Group=redis
 ExecStart=/usr/local/bin/redis-server /etc/redis/redis.conf
 ExecStop=/usr/local/bin/redis-cli shutdown
 Restart=always
+
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -101,9 +103,8 @@ rm -rf /var/lib/redis
 adduser --system --group --no-create-home redis
 mkdir /var/lib/redis
 chown redis:redis /var/lib/redis
-chmod 700 /var/lib/redis
-chown redis:root /etc/redis/redis.conf
-chmod 600 /etc/redis/redis.conf
+chmod 770 /var/lib/redis
+
 echo Enabling Redis on restart...
 systemctl enable redis
 systemctl restart redis
